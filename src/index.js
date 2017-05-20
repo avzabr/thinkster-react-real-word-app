@@ -1,10 +1,11 @@
 import React from "react";
 import {Provider} from "react-redux";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.css";
+import {promiseMiddleware} from "./middleware";
 
 const defaultState = {
     appName: 'conduit',
@@ -13,10 +14,15 @@ const defaultState = {
 
 
 const reducer = function (state = defaultState, action) {
-    return state;
+    switch (action.type) {
+        case 'HOME_PAGE_LOADED':
+            return {...state, articles: action.payload.articles};
+        default:
+            return state;
+    }
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(promiseMiddleware));
 
 ReactDOM.render(<Provider store={store}>
     <App/>

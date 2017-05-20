@@ -3,7 +3,6 @@ import "./App.css";
 import {connect} from "react-redux";
 import Header from "./component/Header";
 import Home from "./component/Home/Index";
-import {Articles} from "./agent";
 
 
 const mapStateToProps = state => ({
@@ -11,10 +10,6 @@ const mapStateToProps = state => ({
 });
 
 class App extends Component {
-
-    componentWillMount() {
-        Articles.all(1).then(jsn => console.log(jsn))
-    }
 
     render() {
         return (
