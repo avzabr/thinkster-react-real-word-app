@@ -2,6 +2,7 @@
  * Created by Aliaksandr on 20.05.2017.
  */
 import React from "react";
+import ArticlePreview from "./ArticlePreview";
 
 const ArticleList = props => {
     if (!props.articles) {
@@ -23,7 +24,7 @@ const ArticleList = props => {
             {
                 props.articles.map(article => {
                     return (
-                        <h2 key={article.description }>{article.title}</h2>
+                        <ArticlePreview article = {article}/>
                     );
                 })
             }
