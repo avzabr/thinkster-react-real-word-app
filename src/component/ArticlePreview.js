@@ -7,7 +7,7 @@ const ArticlePreview = props => {
     const article = props.article;
 
     return (
-        <div className="article-preview">
+        <div className="article-preview" key={article.slug}>
             <div className="article-meta">
                 <a>
                     <img alt={article.author.username} src={article.author.image}/>

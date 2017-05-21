@@ -1,8 +1,11 @@
 import React, {Component} from "react";
 import "./App.css";
 import {connect} from "react-redux";
-import Header from "./component/Header";
-import Home from "./component/Home/Index";
+import Header from "./Header";
+import PropTypes from 'prop-types';
+import Home from "./Home/Index";
+import { Route} from "react-router-dom";
+import Login from "./Login";
 
 
 const mapStateToProps = state => ({
@@ -15,10 +18,15 @@ class App extends Component {
         return (
             <div>
                 <Header appName={this.props.appName}/>
-                <Home />
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
             </div>
         );
     }
 }
+
+App.contextTypes = {
+    router: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, () => ({}))(App);
