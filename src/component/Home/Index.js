@@ -6,10 +6,10 @@ import {connect} from "react-redux";
 import * as React from "react";
 import MainView from "./MainView";
 import Banner from "./Banner";
-import {Articles} from "../../agent"
+import {Articles} from "../../agent";
 
 const mapStateToProps = state => ({
-    appName: state.appName
+    appName: state.common.appName
 });
 
 const mapDispatchToProps = dispatch => ({
