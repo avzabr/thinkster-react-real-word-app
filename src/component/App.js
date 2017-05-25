@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Header from "./Header";
 import PropTypes from 'prop-types';
 import Home from "./Home/Index";
-import { Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import Login from "./Login";
 
 
@@ -18,8 +18,10 @@ class App extends Component {
         return (
             <div>
                 <Header appName={this.props.appName}/>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/login" component={Login} />
+                </Switch>
             </div>
         );
     }
