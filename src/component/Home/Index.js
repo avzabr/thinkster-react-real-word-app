@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import * as React from "react";
 import MainView from "./MainView";
 import Banner from "./Banner";
-import {Articles} from "../../agent";
+import agent from "../../agent";
 
 const mapStateToProps = state => ({
     appName: state.common.appName
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 class Home extends React.Component {
 
     componentWillMount() {
-        this.props.onLoad(Articles.all())
+        this.props.onLoad(agent.Articles.all())
     }
 
     render() {
