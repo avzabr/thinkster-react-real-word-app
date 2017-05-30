@@ -8,22 +8,36 @@ import Login from "./Login";
 
 
 const mapStateToProps = state => ({
-    appName: state.common.appName
+    appName: state.common.appName,
+    redirectTo: state.common.redirectTo
 });
 
+const mapDispatchToProps = dispatch => ({
+    onRedirect: () =>
+        dispatch({type: 'REDIRECT'})
+});
+
+
 class App extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.redirectTo) {
+            this.context.router.replace(nextProps.redirectTo);
+            this.props.onRedirect();
+        }
+    }
 
     render() {
         return (
             <div>
                 <Header appName={this.props.appName}/>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/login" component={Login}/>
                 </Switch>
             </div>
         );
     }
 }
 
-export default connect(mapStateToProps, () => ({}))(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

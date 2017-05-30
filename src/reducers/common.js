@@ -3,9 +3,26 @@
  */
 
 const defaultState = {
-    appName: 'Conduit'
+    appName: 'Conduit',
+    token: null,
+    redirectTo: null
 };
 
 export default (state = defaultState, action) => {
-    return state;
+    switch (action.type) {
+        case 'LOGIN':
+            return {
+                ...state,
+                token: action.error ? null : action.payload.user.token,
+                redirectTo: action.error ? null : '/',
+                currentUser: action.error ? null : action.payload.user
+            };
+        case 'REDIRECT':
+            return {
+                ...state,
+                redirectTo: null
+            };
+        default:
+            return state;
+    }
 }
