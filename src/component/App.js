@@ -5,6 +5,7 @@ import Header from "./Header";
 import Home from "./Home/Index";
 import {Route, Switch} from "react-router-dom";
 import Login from "./Login";
+import agent from "../agent"
 
 
 const mapStateToProps = state => ({
@@ -13,12 +14,23 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    onLoad: (payload,token) =>
+        dispatch({type: 'APP_LOAD', payload, token}),
     onRedirect: () =>
         dispatch({type: 'REDIRECT'})
 });
 
 
 class App extends Component {
+
+    componentWillMount() {
+        const token = window.localStorage.getItem('jwt');
+        if (token) {
+            agent.setToken(token);
+        }
+
+        this.props.onLoad(token ? agent.Auth.current() : null, token)
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectTo) {

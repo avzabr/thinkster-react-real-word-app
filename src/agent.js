@@ -5,6 +5,8 @@
 import superagentPromise from "superagent-promise";
 import _superagent from "superagent";
 
+var token = null;
+
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = 'https://conduit.productionready.io/api';
@@ -30,7 +32,10 @@ const Auth = {
         requests.post('/users/login', {user: {email, password}})
 };
 
+
+
 export default {
     Articles,
-    Auth
+    Auth,
+    setToken: _token => {token = _token}
 };

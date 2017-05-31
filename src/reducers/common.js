@@ -22,6 +22,13 @@ export default (state = defaultState, action) => {
                 ...state,
                 redirectTo: null
             };
+        case 'APP_LOAD':
+            return {
+                ...state,
+                appLoaded: true,
+                token: action.token ? action.token : null,
+                user: action.payload ? action.payload.user : null
+            };
         default:
             return state;
     }
