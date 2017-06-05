@@ -5,7 +5,7 @@
 import superagentPromise from "superagent-promise";
 import _superagent from "superagent";
 
-var token = null;
+let token = null;
 
 const superagent = superagentPromise(_superagent, global.Promise);
 

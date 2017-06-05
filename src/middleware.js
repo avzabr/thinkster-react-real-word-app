@@ -2,7 +2,7 @@
  * Created by Aliaksandr on 20.05.2017.
  */
 
-import agent from './agent'
+import agent from "./agent";
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
@@ -29,8 +29,8 @@ const localStorageMiddleware = store => next => action => {
     if (action.type === 'LOGIN' || action.type === 'REGISTER') {
         if (! action.error) {
             window.localStorage.setItem('jwt', action.payload.user.token);
+            agent.setToken(action.payload.user.token);
         }
-        agent.setToken(action.payload.user.token);
     } else if (action.type === 'LOGOUT') {
         window.localStorage.setItem('jwt', '');
         agent.setToken(null);

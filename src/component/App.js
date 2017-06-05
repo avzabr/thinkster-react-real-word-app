@@ -5,12 +5,13 @@ import Header from "./Header";
 import Home from "./Home/Index";
 import {Route, Switch} from "react-router-dom";
 import Login from "./Login";
-import agent from "../agent"
+import agent from "../agent";
 
 
 const mapStateToProps = state => ({
     appName: state.common.appName,
-    redirectTo: state.common.redirectTo
+    redirectTo: state.common.redirectTo,
+    currentUser: state.common.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -42,7 +43,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header appName={this.props.appName}/>
+                <Header appName={this.props.appName} currentUser={this.props.currentUser}/>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/login" component={Login}/>
