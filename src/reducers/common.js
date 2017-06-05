@@ -28,13 +28,13 @@ export default (state = defaultState, action) => {
                 ...state,
                 appLoaded: true,
                 token: action.token ? action.token : null,
-                user: action.payload ? action.payload.user : null
+                currentUser: action.payload ? action.payload.user : null
             };
         case 'SETTINGS_SAVED':
             return {
                 ...state,
                 redirectTo: action.error ? null : '/',
-                user: action.error ? null : action.payload.user
+                currentUser: action.error ? null : action.payload.user
             };
         case 'LOGOUT':
             return {

@@ -6,6 +6,11 @@ import superagentPromise from "superagent-promise";
 import _superagent from "superagent";
 
 let token = null;
+const tokenPlugin = req => {
+    if (token) {
+        req.set('authorization', `Token ${token}`);
+    }
+};
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
@@ -15,9 +20,11 @@ const responseBody = res => res.body;
 
 const requests = {
     get: url =>
-        superagent.get(`${API_ROOT}${url}`).then(responseBody),
+        superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
     post: (url, body) =>
-        superagent.post(`${API_ROOT}${url}`, body).then(responseBody)
+        superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+    put: (url, body) =>
+        superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
 };
 
 const Articles = {
