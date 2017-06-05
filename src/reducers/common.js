@@ -11,6 +11,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
     switch (action.type) {
         case 'LOGIN':
+        case 'REGISTER':
             return {
                 ...state,
                 token: action.error ? null : action.payload.user.token,

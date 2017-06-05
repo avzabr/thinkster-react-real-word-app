@@ -6,6 +6,7 @@ import Home from "./Home/Index";
 import {Route, Switch} from "react-router-dom";
 import Login from "./Login";
 import agent from "../agent";
+import Register from "./Register";
 
 
 const mapStateToProps = state => ({
@@ -35,7 +36,7 @@ class App extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectTo) {
-            this.context.router.replace(nextProps.redirectTo);
+            this.props.history.push(nextProps.redirectTo);
             this.props.onRedirect();
         }
     }
@@ -47,6 +48,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/login" component={Login}/>
+                    <Route exact path="/register" component={Register}/>
                 </Switch>
             </div>
         );

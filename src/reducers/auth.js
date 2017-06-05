@@ -5,6 +5,7 @@
 export default (state = {}, action) => {
     switch (action.type) {
         case 'LOGIN':
+        case 'REGISTER':
             return {
                 ...state,
                 inProgress: false,
